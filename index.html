@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual DSA Algorithm Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="topbar">
+        <a class="brand" href="#">
+            <span class="brand-mark">DS</span>
+            <span>Algo<span class="accent">Visual</span></span>
+        </a>
+
+        <nav>
+            <a href="#sorting">Sorting</a>
+            <a href="#searching">Searching</a>
+            <a href="#graphs">Graphs</a>
+        </nav>
+
+        <span class="top-note">Learn algorithms visually</span>
+    </header>
+
+    <main class="container">
+
+        <section class="hero">
+            <div>
+                <p class="eyebrow">INTERACTIVE DSA LAB</p>
+                <h1>See algorithms <span class="gradient-text">in action.</span></h1>
+                <p class="hero-copy">
+                    Explore sorting, searching, and graph algorithms
+                    with step-by-step visualizations and complexity insights.
+                </p>
+            </div>
+
+            <div class="hero-stat">
+                <strong>10+</strong>
+                <span>Algorithms to explore</span>
+            </div>
+        </section>
+
+        <!-- SORTING VISUALIZER -->
+        <section class="panel" id="sorting">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">01 / ARRAYS</p>
+                    <h2>Sorting Visualizer</h2>
+                </div>
+                <span class="status-pill">Interactive</span>
+            </div>
+
+            <div class="controls">
+
+                <label>
+                    Algorithm
+                    <select id="sortAlgorithm">
+                        <option value="bubble">Bubble Sort</option>
+                        <option value="selection">Selection Sort</option>
+                        <option value="insertion">Insertion Sort</option>
+                        <option value="merge">Merge Sort</option>
+                        <option value="quick">Quick Sort</option>
+                    </select>
+                </label>
+
+                <label>
+                    Array Size
+                    <output id="sizeValue">30</output>
+                    <input type="range" id="arraySize" min="8" max="70" value="30">
+                </label>
+
+                <label>
+                    Speed
+                    <output id="speedValue">Medium</output>
+                    <input type="range" id="sortSpeed" min="1" max="100" value="55">
+                </label>
+
+                <button class="btn secondary" id="newArray">Generate Array</button>
+                <button class="btn primary" id="sortStart">▶ Start</button>
+                <button class="btn secondary" id="sortPause" disabled>Ⅱ Pause</button>
+                <button class="btn ghost" id="sortReset">Reset</button>
+
+            </div>
+
+            <div class="legend">
+                <span><i class="legend-bar compare"></i> Comparing</span>
+                <span><i class="legend-bar swap"></i> Swapping</span>
+                <span><i class="legend-bar sorted"></i> Sorted</span>
+            </div>
+
+            <div id="sortBars" class="bars"></div>
+
+            <div class="metrics">
+                <div>
+                    <span>Comparisons</span>
+                    <strong id="comparisons">0</strong>
+                </div>
+
+                <div>
+                    <span>Array Accesses</span>
+                    <strong id="accesses">0</strong>
+                </div>
+
+                <div>
+                    <span>Algorithm</span>
+                    <strong id="sortName">Bubble Sort</strong>
+                </div>
+            </div>
+
+            <div class="complexity-grid" id="sortComplexity"></div>
+
+        </section>
+
+        <!-- SEARCHING VISUALIZER -->
+        <section class="panel" id="searching">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">02 / ARRAYS</p>
+                    <h2>Searching Visualizer</h2>
+                </div>
+                <span class="status-pill">Step by step</span>
+            </div>
+
+            <div class="controls">
+
+                <label>
+                    Algorithm
+                    <select id="searchAlgorithm">
+                        <option value="linear">Linear Search</option>
+                        <option value="binary">Binary Search</option>
+                    </select>
+                </label>
+
+                <label>
+                    Target Value
+                    <input type="number" id="searchTarget" value="42">
+                </label>
+
+                <button class="btn secondary" id="searchNew">New Values</button>
+                <button class="btn primary" id="searchStart">▶ Search</button>
+
+            </div>
+
+            <p class="hint" id="searchHint">
+                Linear search checks each value from left to right.
+            </p>
+
+            <div id="searchBars" class="bars search-bars"></div>
+
+            <p class="result" id="searchResult">
+                Choose an algorithm and start searching.
+            </p>
+
+            <div class="complexity-grid" id="searchComplexity"></div>
+
+        </section>
+
+        <!-- GRAPH VISUALIZER -->
+        <section class="panel" id="graphs">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">03 / GRAPHS</p>
+                    <h2>Pathfinding Visualizer</h2>
+                </div>
+                <span class="status-pill">Grid Explorer</span>
+            </div>
+
+            <div class="controls">
+
+                <label>
+                    Algorithm
+                    <select id="graphAlgorithm">
+                        <option value="bfs">Breadth First Search</option>
+                        <option value="dfs">Depth First Search</option>
+                        <option value="dijkstra">Dijkstra's Algorithm</option>
+                    </select>
+                </label>
+
+                <button class="btn primary" id="graphStart">
+                    ▶ Find Path
+                </button>
+
+                <button class="btn secondary" id="graphClear">
+                    Clear Walls
+                </button>
+
+                <button class="btn ghost" id="graphReset">
+                    Reset Grid
+                </button>
+
+            </div>
+
+            <p class="hint">
+                Click or drag cells to add walls. Green is the starting
+                point and red is the destination.
+            </p>
+
+            <div class="legend">
+                <span>🟢 Start</span>
+                <span>🔴 Destination</span>
+                <span><i class="legend-bar wall"></i> Wall</span>
+                <span><i class="legend-bar visited"></i> Visited</span>
+                <span><i class="legend-bar path"></i> Path</span>
+            </div>
+
+            <div id="grid" class="grid"></div>
+
+            <p class="result" id="graphResult">
+                Ready to explore the grid.
+            </p>
+
+            <div class="complexity-grid" id="graphComplexity"></div>
+
+        </section>
+
+        <section class="info-strip">
+
+            <div>
+                <span class="info-icon">⌘</span>
+                <div>
+                    <strong>Learn by doing</strong>
+                    <p>Watch every algorithm operation visually.</p>
+                </div>
+            </div>
+
+            <div>
+                <span class="info-icon">◷</span>
+                <div>
+                    <strong>Understand complexity</strong>
+                    <p>Learn Big-O time and space complexity.</p>
+                </div>
+            </div>
+
+            <div>
+                <span class="info-icon">↗</span>
+                <div>
+                    <strong>Practice DSA</strong>
+                    <p>Experiment with different inputs.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            Built with HTML, CSS and JavaScript |
+            Visual DSA Algorithm Simulator
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
